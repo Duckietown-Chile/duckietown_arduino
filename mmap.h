@@ -79,6 +79,7 @@ class MMap
     {
       bufN_ = ramOffset_;
       msgBuffer_ = new uint8_t[bufN_];
+      DEBUG_PRINT_RAW("MSG BUFFER "); DEBUG_PRINT(bufN_);  
     }
     
     uint8_t serialize()
@@ -121,12 +122,14 @@ class MMap
         MMapVar& mvar = varList_[i];
         if (mvar.var->storage_ == Storage::RAM)
         {
+          INFO_PRINTLN("RAM");
           mvar.var->setDefault();
         }
         else
         {
           for (uint8_t j = 0; j < mvar.var->size(); ++j)
           {
+            INFO_PRINTLN("EEPROM");
             eepromBuffer_[j] = eeprom_read_byte( (uint8_t*)(uint16_t) j + mvar.eepromAddr);
             INFO_PRINT_RAW("Reading "); INFO_PRINT_RAW(eepromBuffer_[j]); INFO_PRINT_RAW(" at "); INFO_PRINTLN_RAW(j + mvar.eepromAddr);
           }
