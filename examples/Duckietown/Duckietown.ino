@@ -111,7 +111,7 @@ class LedDXL: public DeviceDXL<LED_MODEL, LED_FIRMWARE, LED_MMAP_SIZE>
     MMap::Integer<UInt8, 0, 1, 1>::type command_;
     // PWM channels
     MMap::Integer<Int16, -255, 255, 0>::type pwmCh1_;
-    MMap::Integer<UInt8, -255, 255, 0>::type pwmCh2_;
+    MMap::Integer<Int16, -255, 255, 0>::type pwmCh2_;
 };
 
 
