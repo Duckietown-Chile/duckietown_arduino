@@ -1,25 +1,21 @@
 #define LOGGER_MIN_SEVERITY LOGGER_SEVERITY_NONE
 #include <SerialDXL.h>
 
-// LED DXL basic config
-#define LED_MODEL 100
-#define LED_FIRMWARE 100
-#define LED_MMAP_SIZE 3 // Use 3 variable
+// Duck DXL basic config
+#define DUCK_MODEL 100
+#define DUCK_FIRMWARE 100
+#define DUCK_MMAP_SIZE 3 // Use 3 variable
 
 /**
- * @brief LED control using DXL communication protocol
- * @details LED control using Dynamixel communication protocol over RS485.
- * This implementation uses a 1 uint8_t variable for LED state in address 6 
- * of memory map (MMap).
+ * @brief Duck control using DXL communication protocol
  * 
- * @param dir_pin Toggle communication pin.
  * @param reset_pin Pin for reset device
  * @param led_pin LED pin.
  */
-class LedDXL: public DeviceDXL<LED_MODEL, LED_FIRMWARE, LED_MMAP_SIZE>
+class Duck: public DeviceDXL<DUCK_MODEL, DUCK_FIRMWARE, DUCK_MMAP_SIZE>
 {
   public:
-    LedDXL(uint8_t dataControlPin, uint8_t reset_pin, uint8_t led_pin):
+    Duck(uint8_t reset_pin, uint8_t led_pin):
     DeviceDXL(), // Call parent constructor
     reset_pin_(reset_pin),    // Reset pin
     led_pin_(led_pin),        // LED pin
@@ -28,13 +24,8 @@ class LedDXL: public DeviceDXL<LED_MODEL, LED_FIRMWARE, LED_MMAP_SIZE>
     pwmCh2_(MMap::Access::RW, MMap::Storage::RAM) // PWM channel 2 command
     {
       // Config pins
-      pinMode(dataControlPin, OUTPUT);
       pinMode(reset_pin_, INPUT);
       pinMode(led_pin_, OUTPUT);
-
-      // Get mask and port for data control pin
-      dataControlPinMask_ = digitalPinToBitMask(dataControlPin);
-      dataControlPinReg_ = portOutputRegister(digitalPinToPort(dataControlPin));
     }
 
     void init()
@@ -90,19 +81,15 @@ class LedDXL: public DeviceDXL<LED_MODEL, LED_FIRMWARE, LED_MMAP_SIZE>
 
     inline void setTX()
     {
-      *dataControlPinReg_ |= dataControlPinMask_;
+      return;
     }
 
     inline void setRX()
     {
-      *dataControlPinReg_ &= ~dataControlPinMask_;
+      return;
     }
 
   private:
-    // Communication direction pin
-    uint8_t dataControlPinMask_;
-    volatile uint8_t *dataControlPinReg_;
-
     const uint8_t reset_pin_; // Reset pin
     const uint8_t led_pin_; // LED pin
     float float_raw;
@@ -115,17 +102,17 @@ class LedDXL: public DeviceDXL<LED_MODEL, LED_FIRMWARE, LED_MMAP_SIZE>
 };
 
 
-LedDXL led(4, A1, 13);
-SerialDXL<LedDXL> serialDxl;
+Duck duck(A1, 13);
+SerialDXL<Duck> serialDxl;
 
 void setup() {
   Serial.begin(115200);
-  led.init();
-  led.reset();
-  led.mmap_.serialize();
+  duck.init();
+  duck.reset();
+  duck.mmap_.serialize();
 
   // Init serial communication using Dynamixel format
-  serialDxl.init(&Serial ,&led);
+  serialDxl.init(&Serial ,&duck);
 
   pinMode(A1, OUTPUT);
 
@@ -145,8 +132,8 @@ void loop() {
     serialDxl.process(Serial.read());
   }
   
-  led.mmap_.deserialize();
-  led.update();
-  led.mmap_.serialize();
+  duck.mmap_.deserialize();
+  duck.update();
+  duck.mmap_.serialize();
   
 }
