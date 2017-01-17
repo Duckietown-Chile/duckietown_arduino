@@ -15,17 +15,19 @@
 class Duck: public DeviceDXL<DUCK_MODEL, DUCK_FIRMWARE, DUCK_MMAP_SIZE>
 {
   public:
-    Duck(uint8_t reset_pin, uint8_t led_pin):
+    Duck(uint8_t led_pin):
     DeviceDXL(), // Call parent constructor
-    reset_pin_(reset_pin),    // Reset pin
     led_pin_(led_pin),        // LED pin
     command_(MMap::Access::RW, MMap::Storage::RAM), // Led command
     pwmCh1_(MMap::Access::RW, MMap::Storage::RAM), // PWM channel 1 command
     pwmCh2_(MMap::Access::RW, MMap::Storage::RAM) // PWM channel 2 command
     {
       // Config pins
-      pinMode(reset_pin_, INPUT);
       pinMode(led_pin_, OUTPUT);
+      pinMode(5, OUTPUT);
+      pinMode(11, OUTPUT);
+      pinMode(6, OUTPUT);
+      pinMode(12, OUTPUT);
     }
 
     void init()
@@ -61,36 +63,26 @@ class Duck: public DeviceDXL<DUCK_MODEL, DUCK_FIRMWARE, DUCK_MMAP_SIZE>
       digitalWrite(led_pin_, ledCmd);
 
       // PWM Channel 1 update
-      uint8_t forwardCmd = pwmCh1_.data > 0 ? HIGH : LOW;
+      uint8_t forwardCmd = pwmCh1_.data >= 0 ? HIGH : LOW;
       uint8_t duty = forwardCmd == HIGH ? pwmCh1_.data : -pwmCh1_.data;
       digitalWrite(11, forwardCmd);
       analogWrite(5, duty);
 
       // PWM Channel 2 update
-      forwardCmd = pwmCh2_.data > 0 ? HIGH : LOW;
+      forwardCmd = pwmCh2_.data >= 0 ? HIGH : LOW;
       duty = forwardCmd == HIGH ? pwmCh2_.data : -pwmCh2_.data;
       digitalWrite(12, forwardCmd);
       analogWrite(6, duty);
       
     }
 
-    inline bool onReset()
-    {
-      return digitalRead(reset_pin_) == HIGH ? true : false;
-    }
+    inline bool onReset(){;}
 
-    inline void setTX()
-    {
-      return;
-    }
+    inline void setTX(){;}
 
-    inline void setRX()
-    {
-      return;
-    }
+    inline void setRX(){;}
 
   private:
-    const uint8_t reset_pin_; // Reset pin
     const uint8_t led_pin_; // LED pin
     float float_raw;
     
@@ -102,7 +94,7 @@ class Duck: public DeviceDXL<DUCK_MODEL, DUCK_FIRMWARE, DUCK_MMAP_SIZE>
 };
 
 
-Duck duck(A1, 13);
+Duck duck(13);
 SerialDXL<Duck> serialDxl;
 
 void setup() {
@@ -113,16 +105,6 @@ void setup() {
 
   // Init serial communication using Dynamixel format
   serialDxl.init(&Serial ,&duck);
-
-  pinMode(A1, OUTPUT);
-
-  // PWM Pins
-  pinMode(5, OUTPUT);
-  pinMode(6, OUTPUT);
-
-  // H Bridge logic
-  pinMode(11, OUTPUT);
-  pinMode(12, OUTPUT);
   
 }
 

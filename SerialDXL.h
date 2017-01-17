@@ -21,11 +21,11 @@ template <uint16_t modelT, uint8_t firmwareT, size_t mmap_size>
 class DeviceDXL {
   public:
     DeviceDXL():
-      model_(MMap::Access::R, MMap::Storage::EEPROM),
-      firmware_(MMap::Access::R, MMap::Storage::EEPROM),
-      id_(MMap::Access::RW, MMap::Storage::EEPROM),
-      baudrate_(MMap::Access::RW, MMap::Storage::EEPROM),
-      return_delay_(MMap::Access::RW, MMap::Storage::EEPROM),
+      model_(MMap::Access::R, MMap::Storage::RAM),
+      firmware_(MMap::Access::R, MMap::Storage::RAM),
+      id_(MMap::Access::RW, MMap::Storage::RAM),
+      baudrate_(MMap::Access::RW, MMap::Storage::RAM),
+      return_delay_(MMap::Access::RW, MMap::Storage::RAM),
       mmap_()
     {
     }
