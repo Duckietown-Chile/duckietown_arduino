@@ -2,16 +2,16 @@
 
 Arduino based controller for Dukietown robots. This library is based on [serial_dxl](https://github.com/rorromr/serial_dxl).
 
-Microcontroller: ATmega 168 3.3V 8MHz
-Board: Arduino Pro Mini
-H Bridge: Double L9110
+* Microcontroller: ATmega 168 3.3V 8MHz
+* Board: Arduino Pro Mini
+* H Bridge: Double L9110
 
-| Pin |    Function   |
-|-----|---------------|
-| 5   | PWM Ch1 A-1B  |
-| 6   | PWM Ch2 B-1B  |
-| 11  | PWM Ch1 A-1A  |
-| 12  | PWM Ch2 B-1A  |
+| Pin |   Function  |
+|-----|-------------|
+| 5   | PWM CHA-1B  |
+| 6   | PWM CHB-1B  |
+| 11  | PWM CHA-1A  |
+| 12  | PWM CHB-1A  |
 
 Registros:
 
