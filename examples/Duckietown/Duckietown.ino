@@ -67,17 +67,16 @@ class Duck: public DeviceDXL<DUCK_MODEL, DUCK_FIRMWARE, DUCK_MMAP_SIZE>
       digitalWrite(DUCK_LED, ledCmd);
 
       // PWM Channel A update
-      uint8_t forwardCmd = pwmCh1_.data >= 0U ? HIGH : LOW;
+      uint8_t forwardCmd = pwmCh1_.data > 0 ? HIGH : LOW;
       uint8_t duty = forwardCmd == HIGH ? pwmCh1_.data : -pwmCh1_.data;
       digitalWrite(DUCK_A_1A, forwardCmd);
       analogWrite(DUCK_A_1B, duty);
 
       // PWM Channel B update
-      forwardCmd = pwmCh2_.data >= 0U ? HIGH : LOW;
+      forwardCmd = pwmCh2_.data > 0 ? HIGH : LOW;
       duty = forwardCmd == HIGH ? pwmCh2_.data : -pwmCh2_.data;
       digitalWrite(DUCK_B_1A, forwardCmd);
       analogWrite(DUCK_B_1B, duty);
-      
     }
 
     inline bool onReset(){;}
