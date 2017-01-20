@@ -99,7 +99,7 @@ Duck duck;
 SerialDXL<Duck> serialDxl;
 
 void setup() {
-  Serial.begin(115200);
+  Serial.begin(57600);
   duck.init();
   duck.reset();
   duck.mmap_.serialize();

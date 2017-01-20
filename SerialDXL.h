@@ -116,7 +116,7 @@ class SerialDXL
       //uint32_t baud = F_CPU/8/(device_->baudrate_.data+1);
       
       //port_->begin(115200);
-      INFO_PRINT("Baudrate at: "); INFO_PRINTLN(115200);
+      INFO_PRINT("Baudrate at: "); INFO_PRINTLN(9600);
     }
 
     /**
