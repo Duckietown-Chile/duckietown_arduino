@@ -5413,10 +5413,10 @@ type 0309, grid 2.5 mm</description>
 </classes>
 <parts>
 <part name="J1" library="SparkFun-Boards" deviceset="RASPBERRYPI-40-PIN-GPIO" device=""/>
-<part name="J2" library="SparkFun-Connectors" deviceset="M06" device="LONGPADS"/>
+<part name="H-BRIDGE" library="SparkFun-Connectors" deviceset="M06" device="LONGPADS"/>
 <part name="P+1" library="supply1" deviceset="VCC" device=""/>
 <part name="U$2" library="Arduino-clone" deviceset="PRO-MINI" device=""/>
-<part name="J3" library="con-jack" deviceset="JACK-PLUG" device="0"/>
+<part name="PWR" library="con-jack" deviceset="JACK-PLUG" device="0"/>
 <part name="P+2" library="supply1" deviceset="VCC" device=""/>
 <part name="SUPPLY1" library="supply2" deviceset="GND" device=""/>
 <part name="SERVO1" library="SparkFun-Connectors" deviceset="M03" device="LONGPADS"/>
@@ -5438,10 +5438,10 @@ type 0309, grid 2.5 mm</description>
 </plain>
 <instances>
 <instance part="J1" gate="G$1" x="45.72" y="40.64"/>
-<instance part="J2" gate="G$1" x="152.4" y="58.42" rot="MR0"/>
+<instance part="H-BRIDGE" gate="G$1" x="152.4" y="58.42" rot="MR0"/>
 <instance part="P+1" gate="VCC" x="137.16" y="76.2"/>
 <instance part="U$2" gate="G$1" x="109.22" y="38.1"/>
-<instance part="J3" gate="G$1" x="147.32" y="83.82"/>
+<instance part="PWR" gate="G$1" x="147.32" y="83.82"/>
 <instance part="P+2" gate="VCC" x="160.02" y="91.44"/>
 <instance part="SUPPLY1" gate="GND" x="157.48" y="78.74"/>
 <instance part="SERVO1" gate="J$1" x="165.1" y="63.5"/>
@@ -5497,12 +5497,12 @@ type 0309, grid 2.5 mm</description>
 <segment>
 <pinref part="P+1" gate="VCC" pin="VCC"/>
 <wire x1="137.16" y1="73.66" x2="137.16" y2="58.42" width="0.1524" layer="91"/>
-<pinref part="J2" gate="G$1" pin="3"/>
+<pinref part="H-BRIDGE" gate="G$1" pin="3"/>
 <wire x1="137.16" y1="58.42" x2="147.32" y2="58.42" width="0.1524" layer="91"/>
 </segment>
 <segment>
 <pinref part="P+2" gate="VCC" pin="VCC"/>
-<pinref part="J3" gate="G$1" pin="3"/>
+<pinref part="PWR" gate="G$1" pin="3"/>
 <wire x1="160.02" y1="88.9" x2="160.02" y2="86.36" width="0.1524" layer="91"/>
 <wire x1="160.02" y1="86.36" x2="152.4" y2="86.36" width="0.1524" layer="91"/>
 </segment>
@@ -5540,7 +5540,7 @@ type 0309, grid 2.5 mm</description>
 <wire x1="129.54" y1="66.04" x2="129.54" y2="35.56" width="0.1524" layer="91"/>
 <pinref part="U$2" gate="G$1" pin="D12"/>
 <wire x1="129.54" y1="35.56" x2="127" y2="35.56" width="0.1524" layer="91"/>
-<pinref part="J2" gate="G$1" pin="6"/>
+<pinref part="H-BRIDGE" gate="G$1" pin="6"/>
 <wire x1="147.32" y1="66.04" x2="129.54" y2="66.04" width="0.1524" layer="91"/>
 </segment>
 </net>
@@ -5551,7 +5551,7 @@ type 0309, grid 2.5 mm</description>
 <wire x1="81.28" y1="76.2" x2="81.28" y2="38.1" width="0.1524" layer="91"/>
 <pinref part="U$2" gate="G$1" pin="D6"/>
 <wire x1="81.28" y1="38.1" x2="86.36" y2="38.1" width="0.1524" layer="91"/>
-<pinref part="J2" gate="G$1" pin="5"/>
+<pinref part="H-BRIDGE" gate="G$1" pin="5"/>
 <wire x1="147.32" y1="63.5" x2="127" y2="63.5" width="0.1524" layer="91"/>
 </segment>
 </net>
@@ -5562,7 +5562,7 @@ type 0309, grid 2.5 mm</description>
 <wire x1="83.82" y1="40.64" x2="83.82" y2="17.78" width="0.1524" layer="91"/>
 <wire x1="83.82" y1="17.78" x2="144.78" y2="17.78" width="0.1524" layer="91"/>
 <wire x1="144.78" y1="17.78" x2="144.78" y2="53.34" width="0.1524" layer="91"/>
-<pinref part="J2" gate="G$1" pin="1"/>
+<pinref part="H-BRIDGE" gate="G$1" pin="1"/>
 <wire x1="144.78" y1="53.34" x2="147.32" y2="53.34" width="0.1524" layer="91"/>
 </segment>
 </net>
@@ -5571,16 +5571,16 @@ type 0309, grid 2.5 mm</description>
 <wire x1="142.24" y1="55.88" x2="142.24" y2="33.02" width="0.1524" layer="91"/>
 <pinref part="U$2" gate="G$1" pin="D11"/>
 <wire x1="142.24" y1="33.02" x2="127" y2="33.02" width="0.1524" layer="91"/>
-<pinref part="J2" gate="G$1" pin="2"/>
+<pinref part="H-BRIDGE" gate="G$1" pin="2"/>
 <wire x1="142.24" y1="55.88" x2="147.32" y2="55.88" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="GND" class="0">
 <segment>
 <pinref part="SUPPLY1" gate="GND" pin="GND"/>
-<pinref part="J3" gate="G$1" pin="1"/>
+<pinref part="PWR" gate="G$1" pin="1"/>
 <wire x1="157.48" y1="81.28" x2="152.4" y2="81.28" width="0.1524" layer="91"/>
-<pinref part="J3" gate="G$1" pin="2"/>
+<pinref part="PWR" gate="G$1" pin="2"/>
 <wire x1="152.4" y1="83.82" x2="157.48" y2="83.82" width="0.1524" layer="91"/>
 <wire x1="157.48" y1="83.82" x2="157.48" y2="81.28" width="0.1524" layer="91"/>
 </segment>
@@ -5594,7 +5594,7 @@ type 0309, grid 2.5 mm</description>
 <wire x1="22.86" y1="2.54" x2="139.7" y2="2.54" width="0.1524" layer="91"/>
 <wire x1="139.7" y1="2.54" x2="139.7" y2="55.88" width="0.1524" layer="91"/>
 <junction x="139.7" y="55.88"/>
-<pinref part="J2" gate="G$1" pin="4"/>
+<pinref part="H-BRIDGE" gate="G$1" pin="4"/>
 <wire x1="147.32" y1="60.96" x2="139.7" y2="60.96" width="0.1524" layer="91"/>
 <pinref part="SUPPLY3" gate="GND" pin="GND"/>
 <junction x="139.7" y="2.54"/>
