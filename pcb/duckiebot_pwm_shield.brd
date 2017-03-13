@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE eagle SYSTEM "eagle.dtd">
-<eagle version="7.6.0">
+<eagle version="8.0.0">
 <drawing>
 <settings>
 <setting alwaysvectorfont="no"/>
@@ -155,7 +155,7 @@
 <wire x1="63.2" y1="30" x2="38.2" y2="30" width="0.254" layer="25"/>
 <text x="23.2" y="35" size="2.54" layer="25" font="vector" ratio="18">Duckiebot
 Shield
-V1.4</text>
+v2.0</text>
 <text x="32.4" y="3.2" size="2.54" layer="25" font="vector" ratio="14">+</text>
 <text x="7.2" y="7" size="2.54" layer="25" font="vector" ratio="14">-</text>
 </plain>
